@@ -1,11 +1,14 @@
 import React from 'react'
+import { RecoilRoot } from 'recoil'
 import RootPage from '~/pages'
 import '~/style.css'
 
 const App = () => {
   return (
     <div className="w-full">
-      <RootPage />
+      <RecoilRoot>
+        <RootPage />
+      </RecoilRoot>
     </div>
   )
 }

@@ -30,4 +30,13 @@
   .content-center {
     @apply absolute transform translate-x-1/2 -translate-y-1/2 top-1/2 right-1/2;
   }
+  .dangerous {
+    @apply text-red-600;
+  }
+  .informing {
+    @apply text-green-600;
+  }
+  .warning {
+    @apply text-yellow-600;
+  }
 }
