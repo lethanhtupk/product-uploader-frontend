@@ -7,8 +7,6 @@ const Notification = () => {
   const notification = useRecoilValue(notificationState)
   const setNotification = useSetRecoilState(notificationState)
 
-  console.log(notification.isShow, notification.type)
-
   useEffect(() => {
     setTimeout(() => {
       setNotification({ ...notification, isShow: false })

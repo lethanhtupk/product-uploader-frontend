@@ -27,7 +27,7 @@
 }
 
 @layer utilities {
-  .content-center {
+  .center-content {
     @apply absolute transform translate-x-1/2 -translate-y-1/2 top-1/2 right-1/2;
   }
   .dangerous {
@@ -38,5 +38,11 @@
   }
   .warning {
     @apply text-yellow-600;
+  }
+  .main-content {
+    @apply absolute top-0 right-0 flex w-5/6;
+  }
+  .active-navigation-tab {
+    @apply text-yellow-400 bg-gray-900;
   }
 }
