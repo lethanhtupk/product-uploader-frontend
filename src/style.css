@@ -30,6 +30,9 @@
   .center-content {
     @apply absolute transform translate-x-1/2 -translate-y-1/2 top-1/2 right-1/2;
   }
+  .center-content-in-screen {
+    @apply fixed transform translate-x-1/2 -translate-y-1/2 top-1/2 right-1/2;
+  }
   .dangerous {
     @apply text-red-600;
   }
@@ -44,5 +47,8 @@
   }
   .active-navigation-tab {
     @apply text-yellow-400 bg-gray-900;
+  }
+  .text-error {
+    @apply mt-2 text-sm italic text-red-600;
   }
 }

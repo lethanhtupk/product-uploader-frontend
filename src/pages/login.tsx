@@ -1,4 +1,5 @@
 import React from 'react'
+import LoginForm from '~/components/widgets/LoginForm'
 
 const LoginPage = ({ title }: { title: string }) => {
   return (
@@ -6,7 +7,9 @@ const LoginPage = ({ title }: { title: string }) => {
       <header>
         <title>{title}</title>
       </header>
-      <div>Login page</div>
+      <div>
+        <LoginForm />
+      </div>
     </>
   )
 }
