@@ -1,20 +1,22 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
-import RootPage from '~/pages'
+import { routes } from '~/routes'
 import '~/style.css'
 
 const App = () => {
   return (
-    <Router>
-      <Switch>
-        <Route path="/">
-          <RecoilRoot>
-            <RootPage />
-          </RecoilRoot>
-        </Route>
-      </Switch>
-    </Router>
+    <RecoilRoot>
+      <Router>
+        <Switch>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} exact>
+              {route.component}
+            </Route>
+          ))}
+        </Switch>
+      </Router>
+    </RecoilRoot>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 // import NonAuthNavigation from '~/components/layouts/Navigation/NonAuthNavigation'
 import SidebarNavigation from '~/components/layouts/SideBarNavigation'
 // import NotFound from '~/components/screens/NotFound'
@@ -6,13 +6,13 @@ import SidebarNavigation from '~/components/layouts/SideBarNavigation'
 // import Notification from '~/components/widgets/Notification'
 // import Pagination from '~/components/widgets/Pagination'
 
-const RootPage = () => {
+const RootPage = ({ title }: { title: string }) => {
   // const [currentPage, setCurrentPage] = useState<number>(1)
 
   return (
     <>
       <header>
-        <title>Product Uploader</title>
+        <title>{title}</title>
       </header>
       <SidebarNavigation />
       {/* <div className="text-5xl main-content">

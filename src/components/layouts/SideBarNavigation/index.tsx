@@ -46,7 +46,6 @@ const SidebarNavigation = () => {
   const { tab }: Record<string, unknown> = useParams()
   const [activeTab, setActiveTab] = useState<string>((tab || INITIAL_TAB) as string)
 
-  console.log(flattenNavigationItems(navigationItems))
   return (
     <div className="fixed top-0 left-0 flex flex-col justify-between w-1/6 h-screen text-gray-200 bg-gray-800">
       <div className="pt-20">
