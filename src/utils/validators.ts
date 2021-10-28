@@ -17,7 +17,7 @@ export const validateRequiredField = (
   if (!value || value === '') {
     setErrors({ ...errors, [name]: [REQUIRED_FIELD_MESSAGE] })
   } else {
-    delete errors[name]
+    !!errors[name] && delete errors[name]
     setErrors(errors)
   }
 }

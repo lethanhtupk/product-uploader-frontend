@@ -1,4 +1,4 @@
-import customAxios from '~/utils/axios'
+import axios from '~/utils/axios'
 
 export interface IUserInput {
   username: string
@@ -6,5 +6,5 @@ export interface IUserInput {
 }
 
 export const signIn = async (data: IUserInput) => {
-  await customAxios.post('/auth/jwt/create', { ...data })
+  return await axios.post('/auth/jwt/create', { ...data })
 }

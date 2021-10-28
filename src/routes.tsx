@@ -10,16 +10,19 @@ const enum PAGE_TITLES {
 }
 
 interface IRoute {
+  name: string
   path: string
   component: JSX.Element
 }
 
 export const routes: IRoute[] = [
   {
+    name: 'home',
     path: '/',
     component: <RootPage title={PAGE_TITLES.HOME} />,
   },
   {
+    name: 'login',
     path: '/login',
     component: <LoginPage title={PAGE_TITLES.LOGIN} />,
   },

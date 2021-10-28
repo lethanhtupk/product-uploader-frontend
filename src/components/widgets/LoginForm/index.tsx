@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
+import { useHistory } from 'react-router-dom'
 import CheckboxInput from '~/components/elements/Input/CheckboxInput'
 import PasswordInput from '~/components/elements/Input/PasswordInput'
 import SubmitInput from '~/components/elements/Input/SubmitInput'
 import TextInput from '~/components/elements/Input/TextInput'
 import { IUserInput, signIn } from '~/schema/mutations/signIn'
+import { login } from '~/utils/authenticateUtils'
 import { changeIncorrectAccountInformation, FormErrors, ResponseError } from '~/utils/errorUtils'
 import { validateRequiredField } from '~/utils/validators'
 
 const LoginForm = () => {
+  const history = useHistory()
   const [userInput, setUserInput] = useState<IUserInput>()
-  const [formErrors, setFormErrors] = useState<FormErrors>()
+  const [formErrors, setFormErrors] = useState<FormErrors>({})
   const mutation = useMutation(signIn)
 
   useEffect(() => {
@@ -20,7 +23,8 @@ const LoginForm = () => {
         setFormErrors(responseError?.errors as FormErrors)
       }
     } else if (mutation.isSuccess) {
-      // TODO: handle after login success
+      login(mutation.data as { access: string; refresh: string })
+      history.push('/')
     }
   }, [mutation.status])
 

@@ -30,3 +30,8 @@ export const logout = () => {
   window.localStorage.removeItem(LOCAL_STORAGE.REFRESH_TOKEN)
   window.localStorage.removeItem(LOCAL_STORAGE.ME)
 }
+
+export const login = ({ access, refresh }: { access: string; refresh: string }) => {
+  window.localStorage.setItem(LOCAL_STORAGE.ACCESS_TOKEN, access)
+  window.localStorage.setItem(LOCAL_STORAGE.REFRESH_TOKEN, refresh)
+}
