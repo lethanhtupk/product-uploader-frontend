@@ -2,10 +2,19 @@ import React from 'react'
 import Icon from '~/components/elements/Icon'
 import PaginationItem from './PaginationItem'
 
+interface IHiddenOptions {
+  first?: boolean
+  last?: boolean
+  next?: boolean
+  prev?: boolean
+  dots?: boolean
+}
+
 interface Props {
   currentPage: number
   totalPage: number
   limitDisplay?: number
+  hiddenOptions?: IHiddenOptions
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }
 
@@ -21,24 +30,28 @@ const getDisplayPages = (currentPage: number, totalPage: number, limitDisplay?: 
   }
 }
 
-const Pagination = ({ currentPage = 1, totalPage, limitDisplay = 3, setCurrentPage }: Props) => {
+const Pagination = ({ currentPage = 1, totalPage, limitDisplay = 3, setCurrentPage, hiddenOptions }: Props) => {
   // make sure the array is increase order.
   const displayPages = getDisplayPages(currentPage, totalPage, limitDisplay).sort((a, b) => a - b)
   return (
     <div className="flex flex-row">
-      <PaginationItem
-        value={<Icon name="doubleChevronLeft" style="w-4 h-4" />}
-        nextValue={1}
-        setCurrentPage={setCurrentPage}
-      />
-      <PaginationItem
-        value={<Icon name="chevronLeft" style="w-4 h-4" />}
-        nextValue={currentPage - 1}
-        setCurrentPage={setCurrentPage}
-      />
+      {!hiddenOptions.first && (
+        <PaginationItem
+          value={<Icon name="doubleChevronLeft" style="w-4 h-4" />}
+          nextValue={1}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
+      {!hiddenOptions.prev && (
+        <PaginationItem
+          value={<Icon name="chevronLeft" style="w-4 h-4" />}
+          nextValue={currentPage - 1}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
 
       {displayPages.map((page) => {
-        if (page === 1 && !displayPages.includes(2)) {
+        if (page === 1 && !displayPages.includes(2) && !hiddenOptions.dots) {
           return (
             <>
               <PaginationItem
@@ -51,7 +64,7 @@ const Pagination = ({ currentPage = 1, totalPage, limitDisplay = 3, setCurrentPa
               <PaginationItem key={`${page}_dots`} shouldShowValue={false} />
             </>
           )
-        } else if (page === totalPage && !displayPages.includes(totalPage - 1)) {
+        } else if (page === totalPage && !displayPages.includes(totalPage - 1) && !hiddenOptions.dots) {
           return (
             <>
               <PaginationItem key={`${page}_dots`} shouldShowValue={false} />
@@ -75,18 +88,21 @@ const Pagination = ({ currentPage = 1, totalPage, limitDisplay = 3, setCurrentPa
           />
         )
       })}
-
-      <PaginationItem
-        value={<Icon name="chevronRight" style="w-4 h-4" />}
-        nextValue={currentPage + 1}
-        totalPage={totalPage}
-        setCurrentPage={setCurrentPage}
-      />
-      <PaginationItem
-        value={<Icon name="doubleChevronRight" style="w-4 h-4" />}
-        nextValue={totalPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {!hiddenOptions.next && (
+        <PaginationItem
+          value={<Icon name="chevronRight" style="w-4 h-4" />}
+          nextValue={currentPage + 1}
+          totalPage={totalPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
+      {!hiddenOptions.last && (
+        <PaginationItem
+          value={<Icon name="doubleChevronRight" style="w-4 h-4" />}
+          nextValue={totalPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </div>
   )
 }
