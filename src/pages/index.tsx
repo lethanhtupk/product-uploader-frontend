@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import NonAuthNavigation from '~/components/layouts/Navigation/NonAuthNavigation'
 import SidebarNavigation from '~/components/layouts/SideBarNavigation'
+import DataTablePagination from '~/components/widgets/DataTablePagination'
 // import NotFound from '~/components/screens/NotFound'
 // import Modal from '~/components/widgets/Modal'
 // import Notification from '~/components/widgets/Notification'
 // import Pagination from '~/components/widgets/Pagination'
 
 const RootPage = ({ title }: { title: string }) => {
-  // const [currentPage, setCurrentPage] = useState<number>(1)
+  const [currentPage, setCurrentPage] = useState<number>(1)
 
   return (
     <>
@@ -51,6 +52,9 @@ const RootPage = ({ title }: { title: string }) => {
         cancelLabel="Cancel"
       /> */}
       {/* <Pagination totalPage={10} currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
+      <div className="main-content">
+        <DataTablePagination currentPage={currentPage} totalPage={10} setCurrentPage={setCurrentPage} />
+      </div>
     </>
   )
 }
