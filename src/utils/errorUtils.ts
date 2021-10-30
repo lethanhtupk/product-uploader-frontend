@@ -24,4 +24,5 @@ export const changeIncorrectAccountInformation = (message: string) => {
   if (message === 'No active account found with the given credentials') {
     return 'The username or password is incorrect.'
   }
+  return message
 }

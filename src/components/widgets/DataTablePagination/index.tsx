@@ -22,7 +22,6 @@ const limitOptions = [
 
 const DataTablePagination = ({ currentPage, totalPage, setCurrentPage }: Props) => {
   const [limit, setLimit] = useState(10)
-  console.log(limit)
 
   const onChangeLimit = (event: any) => {
     setLimit(event.target.value)
