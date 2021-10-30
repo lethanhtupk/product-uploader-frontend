@@ -1,29 +1,53 @@
 import React, { useState } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
-import NavigationItem from './NavigationItem'
+import { useParams } from 'react-router-dom'
+import NavigationItem from '~/components/layouts/SideBarNavigation/NavigationItem'
+
+export const NAVIGATION_PATHS = {
+  HOME: '/',
+  LOGIN: '/login',
+  STORES: '/stores',
+  CREATE_STORE: '/stores/create',
+  TEMPLATES: '/templates',
+  CREATE_TEMPLATE: '/templates/create',
+}
 
 const navigationItems = [
   {
     key: 'home',
     label: 'home',
+    path: NAVIGATION_PATHS?.HOME,
   },
   {
-    key: 'template',
+    key: 'templates',
     label: 'template',
     children: [
       {
         key: 'all_template',
         label: 'All template',
+        path: NAVIGATION_PATHS?.TEMPLATES,
       },
       {
         key: 'create_template',
-        label: 'Create template',
+        label: 'New template',
+        path: NAVIGATION_PATHS?.CREATE_TEMPLATE,
       },
     ],
   },
   {
-    key: 'store',
+    key: 'stores',
     label: 'store',
+    children: [
+      {
+        key: 'all_store',
+        label: 'All store',
+        path: NAVIGATION_PATHS?.STORES,
+      },
+      {
+        key: 'create_store',
+        label: 'New store',
+        path: NAVIGATION_PATHS?.CREATE_STORE,
+      },
+    ],
   },
 ]
 

@@ -1,9 +1,11 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import Icon from '~/components/elements/Icon'
 
 interface NavigationItem {
   key: string
   label: string
+  path?: string
   children?: NavigationItem[]
 }
 
@@ -15,6 +17,7 @@ interface Props {
 }
 
 const NavigationItem = ({ item, activeTab, setActiveTab }: Props) => {
+  const history = useHistory()
   const [isShowChildren, setIsShowChildren] = useState(false)
   const subNavigationRef = useRef(null)
 
@@ -28,6 +31,7 @@ const NavigationItem = ({ item, activeTab, setActiveTab }: Props) => {
     if (item.children) {
       setIsShowChildren(!isShowChildren)
     }
+    history.push(item.path)
     setActiveTab(item.key)
   }
 

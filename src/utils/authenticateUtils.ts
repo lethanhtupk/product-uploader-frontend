@@ -4,6 +4,14 @@ const enum LOCAL_STORAGE {
   ME = '@me',
 }
 
+export interface IMe {
+  username: string
+  email: string
+  first_name?: string
+  last_name?: string
+  role: number
+}
+
 export interface ILocalStorage {
   access_token: string
   refresh_token: string
@@ -23,6 +31,14 @@ export const getRefreshToken = (): string => {
 
 export const setRefreshToken = (token: string): void => {
   window.localStorage.setItem(LOCAL_STORAGE.REFRESH_TOKEN, token)
+}
+
+export const getMe = (): IMe => {
+  return JSON.parse(window.localStorage.getItem(LOCAL_STORAGE.ME))
+}
+
+export const setMe = (me: IMe) => {
+  window.localStorage.setItem(LOCAL_STORAGE.ME, JSON.stringify(me))
 }
 
 export const logout = () => {
