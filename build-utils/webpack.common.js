@@ -35,7 +35,7 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.resolve(__dirname, '..', './dist'),
+      directory: path.resolve(__dirname, '..', './public'),
     },
     compress: true,
     port: 3000,
@@ -45,7 +45,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', './src/index.html'),
+      template: path.resolve(__dirname, '..', './public/index.html'),
     }),
     new EslintPlugin(),
   ],
