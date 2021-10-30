@@ -1,21 +1,24 @@
 import React, { useState } from 'react'
+import { useRecoilValue } from 'recoil'
 // import NonAuthNavigation from '~/components/layouts/Navigation/NonAuthNavigation'
-import SidebarNavigation from '~/components/layouts/SideBarNavigation'
 import DataTablePagination from '~/components/widgets/DataTablePagination'
 // import NotFound from '~/components/screens/NotFound'
 // import Modal from '~/components/widgets/Modal'
-// import Notification from '~/components/widgets/Notification'
+import Notification from '~/components/widgets/Notification'
+import { getCurrentUser } from '~/recoil/atoms/authenticationState'
 // import Pagination from '~/components/widgets/Pagination'
 
 const RootPage = ({ title }: { title: string }) => {
   const [currentPage, setCurrentPage] = useState<number>(1)
+  const me = useRecoilValue(getCurrentUser)
 
   return (
     <>
       <header>
         <title>{title}</title>
       </header>
-      <SidebarNavigation />
+      <Notification />
+
       {/* <div className="text-5xl main-content">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus odit nulla minus eos illo maiores
         consequuntur, dolorum veniam odio deserunt ducimus tempora est adipisci officia vitae nostrum. Obcaecati,
