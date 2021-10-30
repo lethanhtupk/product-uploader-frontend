@@ -1,4 +1,7 @@
 import React from 'react'
+import StoreCreate from '~/components/screens/StoreCreate'
+import withAuthorization from '~/hocs/withAuthorization'
+import { isAdmin } from '~/utils/authUtils'
 
 const StoreCreatePage = ({ title }: { title: string }) => {
   return (
@@ -7,10 +10,10 @@ const StoreCreatePage = ({ title }: { title: string }) => {
         <title>{title}</title>
       </header>
       <section className="main-content">
-        <p>Store create page</p>
+        <StoreCreate />
       </section>
     </>
   )
 }
 
-export default StoreCreatePage
+export default withAuthorization(isAdmin)(StoreCreatePage)

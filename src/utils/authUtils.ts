@@ -4,6 +4,16 @@ const enum LOCAL_STORAGE {
   ME = '@me',
 }
 
+export const enum ROLE {
+  USER = 1,
+  ADMIN = 2,
+  SUPER_ADMIN = 3,
+}
+
+export const isAdmin = (me: IMe) => {
+  return !!me && (me.role === ROLE.ADMIN || me.role === ROLE.SUPER_ADMIN)
+}
+
 export interface IMe {
   username: string
   email: string

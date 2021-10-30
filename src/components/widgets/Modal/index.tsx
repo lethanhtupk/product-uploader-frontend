@@ -6,8 +6,8 @@ interface Props {
   message: string
   actionLabel: string
   cancelLabel: string
-  onAction?: any
-  onCancel?: any
+  onAction?: () => void
+  onCancel?: () => void
 }
 
 const Modal = ({ title, message, actionLabel, cancelLabel, onAction, onCancel }: Props) => {

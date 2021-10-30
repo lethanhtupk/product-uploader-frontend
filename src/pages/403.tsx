@@ -3,22 +3,22 @@ import { useRecoilValue } from 'recoil'
 import NotFound from '~/components/screens/NotFound'
 import { getCurrentUser } from '~/recoil/atoms/authenticationState'
 
-const NotFound404Page = () => {
+const Forbidden403Page = () => {
   const me = useRecoilValue(getCurrentUser)
 
   return (
     <>
       <header>
-        <title>Product Uploader | 404</title>
+        <title>Product Uploader | 403</title>
       </header>
       <NotFound
-        statusCode={404}
-        title="Page not found"
-        message="Please check the URL in the address bar and try again."
+        statusCode={403}
+        title="Forbidden"
+        message="Access is not granted."
         positionStyle={me ? 'center-in-main-content' : null}
       />
     </>
   )
 }
 
-export default NotFound404Page
+export default Forbidden403Page

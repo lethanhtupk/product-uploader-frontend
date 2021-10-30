@@ -56,7 +56,7 @@ const RootPage = ({ title }: { title: string }) => {
       /> */}
       {/* <Pagination totalPage={10} currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
       <div className="main-content">
-        <DataTablePagination currentPage={currentPage} totalPage={10} setCurrentPage={setCurrentPage} />
+        {/* <DataTablePagination currentPage={currentPage} totalPage={10} setCurrentPage={setCurrentPage} /> */}
       </div>
     </>
   )

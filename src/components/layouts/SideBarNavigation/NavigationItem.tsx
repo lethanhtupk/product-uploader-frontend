@@ -1,6 +1,10 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
 import Icon from '~/components/elements/Icon'
+import { tokenState } from '~/recoil/atoms/authenticationState'
+import { logout } from '~/utils/authUtils'
+import { NAVIGATION_PATHS } from '~/utils/routes'
 
 interface NavigationItem {
   key: string
@@ -20,6 +24,7 @@ const NavigationItem = ({ item, activeTab, setActiveTab }: Props) => {
   const history = useHistory()
   const [isShowChildren, setIsShowChildren] = useState(false)
   const subNavigationRef = useRef(null)
+  const setToken = useSetRecoilState(tokenState)
 
   useLayoutEffect(() => {
     if (isShowChildren) {
@@ -30,6 +35,13 @@ const NavigationItem = ({ item, activeTab, setActiveTab }: Props) => {
   const onSelectTab = (item: NavigationItem) => {
     if (item.children) {
       setIsShowChildren(!isShowChildren)
+    }
+    if (item.label === 'logout') {
+      setToken(() => {
+        return { accessToken: null, refreshToken: null }
+      })
+      logout()
+      history.push(NAVIGATION_PATHS.HOME)
     }
     history.push(item.path)
     setActiveTab(item.key)
