@@ -7,19 +7,20 @@ import TextInput from '~/components/elements/Input/TextInput'
 import { IUser, IUserPage } from '~/models/user'
 import { queryUsers } from '~/schema/queries/users'
 import { DEFAULT_LIMIT_RECORDS } from '~/utils/commonUtils'
-import { ResponseError } from '~/utils/errorUtils'
+import { FormErrors, ResponseError } from '~/utils/errorUtils'
+import { validateRequiredField } from '~/utils/validators'
 
 interface IStoreInput {
   domain_name: string
   consumer_key: string
   secret_key: string
-  users: number[]
+  users: number[] | null
 }
 
 const StoreForm = () => {
   const [storeInput, setStoreInput] = useState<IStoreInput>()
   const [searchPattern, setSearchPattern] = useState<string>('')
-  const [errors, setErrors] = useState<ResponseError>()
+  const [errors, setErrors] = useState<FormErrors>()
 
   const { isLoading, isError, isSuccess, error, data } = useQuery(
     ['queryUsers', { searchPattern, currentPage: 1, limit: DEFAULT_LIMIT_RECORDS }],
@@ -31,6 +32,11 @@ const StoreForm = () => {
     setStoreInput({ ...storeInput, [name]: value })
   }
 
+  const onSelectInputChange = (newValue: string) => {
+    // TODO: apply debounce in here
+    setSearchPattern(newValue)
+  }
+
   const onSelectUsers = (selectedUsers: IUser[]) => {
     const selectedUserIds = selectedUsers.map((user) => user.id)
     setStoreInput({ ...storeInput, users: selectedUserIds })
@@ -38,7 +44,6 @@ const StoreForm = () => {
 
   const onSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log(storeInput)
     console.log('submitted')
   }
 
@@ -48,7 +53,14 @@ const StoreForm = () => {
 
   return (
     <form className="w-2/5 mt-20" onSubmit={onSubmit}>
-      <TextInput name="domain_name" label="Domain name" isRequired={true} onChange={onInputChange} />
+      <TextInput
+        name="domain_name"
+        label="Domain name"
+        isRequired={true}
+        errors={errors}
+        onChange={onInputChange}
+        onBlur={() => validateRequiredField('domain_name', storeInput?.domain_name, errors, setErrors)}
+      />
       <TextInput name="consumer_key" label="Consumer key" isRequired={true} onChange={onInputChange} />
       <TextInput name="secret_key" label="Secret key" isRequired={true} onChange={onInputChange} />
       <SelectInput
@@ -63,6 +75,7 @@ const StoreForm = () => {
         getOptionLabel={(option) => option.username as string}
         getOptionValue={(option) => option.id as string}
         onChange={onSelectUsers}
+        onInputChange={onSelectInputChange}
       />
       <div className="flex justify-center w-full mt-8">
         <Button

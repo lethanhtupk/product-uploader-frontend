@@ -16,6 +16,7 @@ interface Props {
   getOptionLabel: (option: Record<string, unknown>) => string
   getOptionValue: (option: Record<string, unknown>) => string
   onChange: any
+  onInputChange?: (newValue: string) => void
 }
 
 const customStyles = {
@@ -40,6 +41,7 @@ const SelectInput = ({
   getOptionLabel,
   getOptionValue,
   onChange,
+  onInputChange,
 }: Props) => {
   return (
     <>
@@ -59,6 +61,7 @@ const SelectInput = ({
         getOptionLabel={getOptionLabel}
         getOptionValue={getOptionValue}
         onChange={onChange}
+        onInputChange={onInputChange}
       />
       {error && error.errors?.detail && <p className="text-error">{error.errors.detail}</p>}
     </>

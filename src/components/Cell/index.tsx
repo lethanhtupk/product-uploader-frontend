@@ -47,10 +47,12 @@ const Cell = ({ isHeading, customStyle, value }: Props) => {
         <td
           className={
             customStyle ||
-            `py-3 px-3 border-b border-gray-300  ${!isNaN(Number(value)) ? 'text-center' : 'min-w-100px'}`
+            `py-3 px-3 border-b border-gray-300 min-w-100px ${!value ? 'text-left' : ''} ${
+              value !== '' && !isNaN(Number(value)) ? 'text-center' : ''
+            }`
           }
         >
-          {value}
+          {value || '--'}
         </td>
       )}
     </>

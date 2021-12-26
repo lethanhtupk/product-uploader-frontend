@@ -15,6 +15,7 @@ export interface FormErrors {
 }
 
 export interface ResponseError {
+  // error return from server
   code: number
   errors: DetailError | FormErrors
 }

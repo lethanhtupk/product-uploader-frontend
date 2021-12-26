@@ -1,4 +1,5 @@
 import React from 'react'
+import { FormErrors } from '~/utils/errorUtils'
 
 export const REQUIRED_FIELD_MESSAGE = 'This field is required.'
 
@@ -11,7 +12,7 @@ export const requiredValue = (value: string): string => {
 export const validateRequiredField = (
   name: string,
   value: string,
-  errors: Record<string, unknown>,
+  errors: FormErrors,
   setErrors: React.Dispatch<React.SetStateAction<unknown>>,
 ) => {
   if (!value || value === '') {
