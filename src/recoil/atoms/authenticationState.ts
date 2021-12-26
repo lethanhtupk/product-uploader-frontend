@@ -1,6 +1,6 @@
 import { atom, selector } from 'recoil'
 import { getMeAsync } from '~/schema/mutations/getMe'
-import { getAccessToken, getRefreshToken, IMe, setMe } from '~/utils/authenticateUtils'
+import { getAccessToken, getRefreshToken, IMe, setMe } from '~/utils/authUtils'
 
 interface IToken {
   accessToken: string
@@ -14,8 +14,13 @@ export const tokenState = atom({
 
 export const getCurrentUser = selector({
   key: 'getMe',
-  get: async () => {
+  get: async ({ get }) => {
     try {
+      const tokens = get(tokenState)
+      if (!tokens.accessToken) {
+        console.info('No token has been found')
+        return null
+      }
       const me = (await getMeAsync()) as IMe
       setMe(me)
       return me

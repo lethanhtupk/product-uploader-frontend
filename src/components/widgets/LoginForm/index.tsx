@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import { useHistory } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import SubmitButton from '~/components/elements/buttons/SubmitButton'
 import CheckboxInput from '~/components/elements/Input/CheckboxInput'
 import PasswordInput from '~/components/elements/Input/PasswordInput'
-import SubmitInput from '~/components/elements/Input/SubmitInput'
 import TextInput from '~/components/elements/Input/TextInput'
+import { tokenState } from '~/recoil/atoms/authenticationState'
 import { IUserInput, signIn } from '~/schema/mutations/signIn'
-import { login } from '~/utils/authenticateUtils'
+import { login } from '~/utils/authUtils'
 import { changeIncorrectAccountInformation, FormErrors, ResponseError } from '~/utils/errorUtils'
 import { validateRequiredField } from '~/utils/validators'
+
+interface ITokens {
+  access: string
+  refresh: string
+}
 
 const LoginForm = () => {
   const history = useHistory()
   const [userInput, setUserInput] = useState<IUserInput>()
   const [formErrors, setFormErrors] = useState<FormErrors>({})
+  const setToken = useSetRecoilState(tokenState)
   const mutation = useMutation(signIn)
 
   useEffect(() => {
@@ -23,12 +31,16 @@ const LoginForm = () => {
         setFormErrors(responseError?.errors as FormErrors)
       }
     } else if (mutation.isSuccess) {
-      login(mutation.data as { access: string; refresh: string })
+      const tokens = mutation.data as ITokens
+      login(tokens)
+      setToken(() => {
+        return { accessToken: tokens.access, refreshToken: tokens.refresh }
+      })
       history.push('/')
     }
   }, [mutation.status])
 
-  const onSubmit = (event: Event) => {
+  const onSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (Object.keys(formErrors).length > 0) {
       return
@@ -36,7 +48,7 @@ const LoginForm = () => {
     mutation.mutate(userInput)
   }
 
-  const onChangeInput = (event: any) => {
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setUserInput({ ...userInput, [name]: value })
   }
@@ -48,12 +60,13 @@ const LoginForm = () => {
   return (
     <div className="w-1/2 max-w-xl center-content-in-screen">
       <h1 className="font-black text-center text-black mb-14">Sign in to your account</h1>
-      <form className="flex flex-col p-8 bg-white rounded-lg ">
+      <form className="flex flex-col p-8 bg-white rounded-lg" onSubmit={onSubmit}>
         <TextInput
           name="username"
           label="Username"
           placeholder="Username"
           errors={formErrors}
+          isRequired={true}
           onChange={onChangeInput}
           onBlur={() => onValidateInputField('username')}
         />
@@ -71,7 +84,7 @@ const LoginForm = () => {
             Forget your password?
           </a>
         </div>
-        <SubmitInput label="Sign in" onSubmit={onSubmit} />
+        <SubmitButton label="Sign in" customStyle="rounded-lg bg-blue-600 hover:bg-blue-400 text-white py-3 mt-10" />
         {(mutation.error as ResponseError)?.errors.detail && (
           <p className="text-error">{`*${changeIncorrectAccountInformation(
             (mutation.error as ResponseError)?.errors.detail as string,

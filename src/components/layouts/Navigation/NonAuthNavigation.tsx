@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { NAVIGATION_PATHS } from '../SideBarNavigation'
+import { NAVIGATION_PATHS } from '~/utils/routes'
 
 const NonAuthNavigation = () => {
   const history = useHistory()

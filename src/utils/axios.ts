@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { UNKNOWN_ERROR } from '~/utils/errorUtils'
-import { getAccessToken, getRefreshToken, logout, setAccessToken } from '~/utils/authenticateUtils'
+import { getAccessToken, getRefreshToken, logout, setAccessToken } from '~/utils/authUtils'
 
 const UPDATE_SUCCESS_STATUS_CODE = [200, 204]
 const DELETE_SUCCESS_STATUS_CODE = [200, 202, 204]

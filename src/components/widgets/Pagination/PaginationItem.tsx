@@ -8,7 +8,7 @@ const PaginationItem = ({
   totalPage,
   setCurrentPage,
 }: {
-  value?: number | JSX.Element
+  value?: React.ReactNode
   nextValue?: number
   shouldShowValue?: boolean
   isActive?: boolean

@@ -1,4 +1,5 @@
 import React from 'react'
+import StoreList from '~/components/screens/StoreList'
 
 const StorePage = ({ title }: { title: string }) => {
   return (
@@ -6,8 +7,8 @@ const StorePage = ({ title }: { title: string }) => {
       <header>
         <title>{title}</title>
       </header>
-      <section>
-        <p>Store List</p>
+      <section className="main-content">
+        <StoreList />
       </section>
     </>
   )

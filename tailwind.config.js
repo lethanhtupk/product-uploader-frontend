@@ -4,6 +4,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      minWidth: {
+        '100px': '100px',
+      },
       keyframes: {
         slideIn: {
           '0%': {
@@ -25,6 +28,9 @@ module.exports = {
       animation: {
         slideIn: 'slideIn 1s ease-in-out',
         slideOut: 'slideOut 1.2s ease-in-out',
+      },
+      inset: {
+        '7/12': '58.33333333%',
       },
     },
   },

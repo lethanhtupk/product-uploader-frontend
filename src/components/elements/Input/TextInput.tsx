@@ -1,19 +1,19 @@
 import React from 'react'
 import { FormErrors } from '~/utils/errorUtils'
-import { requiredValue } from '~/utils/validators'
 
 interface Props {
   name: string
   label: string
   type?: string
-  children?: JSX.Element
+  children?: React.ReactNode
   placeholder?: string
   isDisable?: boolean
+  isRequired?: boolean
   labelStyle?: string
   inputStyle?: string
   errors?: FormErrors
   onChange: React.Dispatch<React.SetStateAction<unknown>>
-  onBlur?: any
+  onBlur?: () => void
 }
 
 const TextInput = ({
@@ -23,6 +23,7 @@ const TextInput = ({
   children,
   placeholder,
   isDisable = false,
+  isRequired = false,
   labelStyle,
   inputStyle,
   errors,
@@ -31,8 +32,9 @@ const TextInput = ({
 }: Props) => {
   return (
     <div className="flex flex-col w-full">
-      <label htmlFor={name} className={labelStyle || 'my-2'}>
+      <label htmlFor={name} className={labelStyle || 'mt-2 mb-1'}>
         {label}
+        {isRequired ? <span className="text-red-600"> &nbsp;*</span> : ''}
       </label>
       <div className="relative flex flex-row items-center">
         <input
@@ -40,7 +42,10 @@ const TextInput = ({
           id={name}
           name={name}
           placeholder={placeholder}
-          className={inputStyle || 'px-4 py-2 border border-gray-300 rounded-lg w-full'}
+          className={
+            inputStyle ||
+            'px-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 ring-blue-500'
+          }
           disabled={isDisable}
           onChange={onChange}
           onBlur={onBlur}

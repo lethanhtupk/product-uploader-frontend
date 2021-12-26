@@ -23,6 +23,7 @@ const PasswordInput = ({ errors, onChange, onBlur }: Props) => {
       label="Password"
       placeholder="Password"
       errors={errors}
+      isRequired={true}
       onChange={onChange}
       onBlur={onBlur}
     >
