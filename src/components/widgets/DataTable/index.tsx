@@ -1,10 +1,11 @@
 import React from 'react'
 import Cell from '~/components/Cell'
 import DataTablePagination from '../DataTablePagination'
+import { ICell } from '~/utils/dataTableUtils'
 
 interface Props {
   headings: { label: string; key: string }[]
-  rows: string[][]
+  rows: ICell[][]
   total: number
   limit: number
   currentPage: number
@@ -26,7 +27,7 @@ const renderHeadings = (headings: { label: string; key: string }[]) => {
 const DataTable = ({ headings, rows, total, limit, currentPage, totalPage, setLimit, setCurrentPage }: Props) => {
   return (
     <>
-      <table className="w-full mb-10 filter drop-shadow-lg">
+      <table className="mb-10 filter drop-shadow-lg">
         <thead>{renderHeadings(headings)}</thead>
         <tbody>
           {rows.map((row, index) => (

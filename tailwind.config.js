@@ -6,6 +6,8 @@ module.exports = {
     extend: {
       minWidth: {
         '100px': '100px',
+        '150px': '150px',
+        '200px': '200px',
       },
       keyframes: {
         slideIn: {

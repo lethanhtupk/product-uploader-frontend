@@ -1,21 +1,48 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Icon from '~/components/elements/Icon'
+import { truncateLongText } from '~/utils/commonUtils'
+import { ICell } from '~/utils/dataTableUtils'
+import FullContent from '../elements/FullContent'
 
 interface Props {
   isHeading?: boolean
   customStyle?: string
-  value: string
+  value: ICell | string
 }
 
 const Cell = ({ isHeading, customStyle, value }: Props) => {
+  const [showAll, setShowAll] = useState<boolean>(false)
+  const cellRef = useRef<HTMLTableCellElement>(null)
+
+  useEffect(() => {
+    if (!cellRef.current) {
+      return
+    }
+    cellRef.current.addEventListener('mouseenter', onMouseEnter)
+    cellRef.current.addEventListener('mouseleave', onMouseLeave)
+
+    return () => {
+      cellRef.current.removeEventListener('mouseenter', onMouseEnter)
+      cellRef.current.removeEventListener('mouseleave', onMouseLeave)
+    }
+  }, [cellRef.current])
+
+  const onMouseEnter = () => {
+    setShowAll(true)
+  }
+
+  const onMouseLeave = () => {
+    setShowAll(false)
+  }
+
   return (
     <>
       {isHeading ? (
         <th
           className={
             customStyle ||
-            `bg-gray-200 py-2 text-gray-900 font-medium uppercase px-3 ${
-              value === 'index' ? 'text-center' : 'text-left'
+            `bg-slate-300 py-2 text-gray-900 font-medium uppercase px-3 ${
+              value === 'index' ? 'text-center' : 'text-left min-w-150px'
             }`
           }
         >
@@ -45,14 +72,23 @@ const Cell = ({ isHeading, customStyle, value }: Props) => {
         </td>
       ) : (
         <td
+          ref={cellRef}
           className={
             customStyle ||
-            `py-3 px-3 border-b border-gray-300 min-w-100px ${!value ? 'text-left' : ''} ${
-              value !== '' && !isNaN(Number(value)) ? 'text-center' : ''
+            `py-3 px-3 border-b border-gray-300 min-w-100px relative ${!(value as ICell).content ? 'text-left' : ''} ${
+              (value as ICell).content !== '' && !isNaN(Number((value as ICell).content)) ? 'text-center' : ''
             }`
           }
         >
-          {value || '--'}
+          {(value as ICell).shouldTruncate
+            ? truncateLongText((value as ICell).content || '--', (value as ICell).maxLength)
+            : (value as ICell).content || '--'}
+          <FullContent
+            content={(value as ICell).content}
+            isDisplay={
+              showAll && (value as ICell).shouldTruncate && (value as ICell).content.length > (value as ICell).maxLength
+            }
+          />
         </td>
       )}
     </>

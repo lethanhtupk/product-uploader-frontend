@@ -1,11 +1,12 @@
 import React from 'react'
 
 interface Props {
-  content?: string
+  isDisplay: boolean
+  content: string
 }
 
-const FullContent = ({ content }: Props) => {
-  return <div className="absolute px-3 py-2">{content}</div>
+const FullContent = ({ content, isDisplay }: Props) => {
+  return <div className={`px-2 py-1 bg-slate-300 rounded-md ${isDisplay ? 'absolute' : 'hidden'}`}>{content}</div>
 }
 
 export default FullContent
