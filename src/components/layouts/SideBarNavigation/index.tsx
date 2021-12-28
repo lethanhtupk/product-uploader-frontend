@@ -86,13 +86,13 @@ const SidebarNavigation = () => {
   const me = useRecoilValue(getCurrentUser)
 
   return (
-    <div className="fixed top-0 left-0 flex flex-col justify-between w-1/6 h-screen text-gray-200 bg-gray-800">
-      <div className="pt-20">
+    <div className="fixed top-0 left-0 flex flex-col w-1/6 h-screen text-gray-200 bg-gray-800">
+      <div className="pt-10 pb-8 overflow-y-auto">
         {navigationItems.map((item) => (
           <NavigationItem key={item.key} item={item} activeTab={activeTab} setActiveTab={setActiveTab} />
         ))}
       </div>
-      <div className="flex flex-row w-full py-4 pl-4 text-white bg-gray-700">
+      <div className="absolute bottom-0 flex flex-row w-full py-4 pl-4 text-white bg-gray-700">
         <img
           src="https://giaithuongtinhnguyen.vn/dien-vien-fukuda/imager_7350.jpg"
           alt="avatar"
