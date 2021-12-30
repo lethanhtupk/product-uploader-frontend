@@ -61,14 +61,27 @@ const StoreForm = () => {
         onChange={onInputChange}
         onBlur={() => validateRequiredField('domain_name', storeInput?.domain_name, errors, setErrors)}
       />
-      <TextInput name="consumer_key" label="Consumer key" isRequired={true} onChange={onInputChange} />
-      <TextInput name="secret_key" label="Secret key" isRequired={true} onChange={onInputChange} />
+      <TextInput
+        name="consumer_key"
+        label="Consumer key"
+        isRequired={true}
+        errors={errors}
+        onChange={onInputChange}
+        onBlur={() => validateRequiredField('consumer_key', storeInput?.consumer_key, errors, setErrors)}
+      />
+      <TextInput
+        name="secret_key"
+        label="Secret key"
+        isRequired={true}
+        errors={errors}
+        onChange={onInputChange}
+        onBlur={() => validateRequiredField('secret_key', storeInput?.secret_key, errors, setErrors)}
+      />
       <SelectInput
         name="users"
         label="Assign for"
         placeholder="Select users..."
         isMulti={true}
-        isRequired={true}
         isLoading={isLoading}
         options={isSuccess ? (data as IUserPage).results : []}
         error={isError ? (error as ResponseError) : undefined}

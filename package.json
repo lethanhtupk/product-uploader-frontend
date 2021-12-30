@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "webpack serve --config ./build-utils/webpack.config.js --env env=dev",
     "build": "webpack --config ./build-utils/webpack.config.js --env env=prod",
-    "do-build": "yarn add --only=dev && yarn build && yarn prune --production",
     "ts-check": "tsc --noemit",
     "lint": "eslint -c .eslintrc.js --ext .js,.jsx,.ts,.tsx src --quiet",
     "lint-fix": "eslint -c .eslintrc.js --ext .js,.jsx,.ts,.tsx src --cache --fix",
