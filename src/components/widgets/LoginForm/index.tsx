@@ -84,7 +84,11 @@ const LoginForm = () => {
             Forget your password?
           </a>
         </div>
-        <SubmitButton label="Sign in" customStyle="rounded-lg bg-blue-600 hover:bg-blue-400 text-white py-3 mt-10" />
+        <SubmitButton
+          label="Sign in"
+          customStyle="rounded-lg bg-blue-600 hover:bg-blue-400 text-white py-3 mt-10 flex flex-row items-center justify-center"
+          isLoading={mutation.isLoading}
+        />
         {(mutation.error as ResponseError)?.errors.detail && (
           <p className="text-error">{`*${changeIncorrectAccountInformation(
             (mutation.error as ResponseError)?.errors.detail as string,
