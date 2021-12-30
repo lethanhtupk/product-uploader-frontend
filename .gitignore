@@ -142,5 +142,8 @@ sketch
 ## Husky
 .husky/
 
+.firebase/
+.firebaserc
+firebase.json
+
 # End of https://www.toptal.com/developers/gitignore/api/node,react
-1
