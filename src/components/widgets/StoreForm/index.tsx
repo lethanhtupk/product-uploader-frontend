@@ -6,7 +6,7 @@ import SelectInput from '~/components/elements/Input/SelectInput'
 import TextInput from '~/components/elements/Input/TextInput'
 import { IUser, IUserPage } from '~/models/user'
 import { queryUsers } from '~/schema/queries/users'
-import { DEFAULT_LIMIT_RECORDS } from '~/utils/commonUtils'
+import { debounce, DEFAULT_LIMIT_RECORDS } from '~/utils/commonUtils'
 import { FormErrors, ResponseError } from '~/utils/errorUtils'
 import { validateRequiredField } from '~/utils/validators'
 
@@ -33,8 +33,9 @@ const StoreForm = () => {
   }
 
   const onSelectInputChange = (newValue: string) => {
-    // TODO: apply debounce in here
-    setSearchPattern(newValue)
+    debounce(() => {
+      setSearchPattern(newValue)
+    })
   }
 
   const onSelectUsers = (selectedUsers: IUser[]) => {
