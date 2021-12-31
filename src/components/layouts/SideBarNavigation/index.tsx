@@ -86,7 +86,7 @@ const SidebarNavigation = () => {
   const me = useRecoilValue(getCurrentUser)
 
   return (
-    <div className="fixed top-0 left-0 flex flex-col w-1/6 h-screen text-gray-200 bg-gray-800">
+    <div className="fixed top-0 left-0 flex flex-col h-screen text-gray-200 bg-gray-800 min-w-250px">
       <div className="pt-10 pb-8 overflow-y-auto">
         {navigationItems.map((item) => (
           <NavigationItem key={item.key} item={item} activeTab={activeTab} setActiveTab={setActiveTab} />
