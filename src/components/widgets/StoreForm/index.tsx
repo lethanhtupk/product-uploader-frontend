@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
-import { useQuery } from 'react-query'
-import Button from '~/components/elements/buttons/Button'
+import { useMutation, useQuery } from 'react-query'
 import SubmitButton from '~/components/elements/buttons/SubmitButton'
 import SelectInput from '~/components/elements/Input/SelectInput'
 import TextInput from '~/components/elements/Input/TextInput'
 import { IUser, IUserPage } from '~/models/user'
+import { createStore } from '~/schema/mutations/createStore'
 import { queryUsers } from '~/schema/queries/users'
 import { debounce, DEFAULT_LIMIT_RECORDS } from '~/utils/commonUtils'
 import { FormErrors, ResponseError } from '~/utils/errorUtils'
 import { validateRequiredField } from '~/utils/validators'
 
-interface IStoreInput {
+export interface IStoreInput {
   domain_name: string
   consumer_key: string
   secret_key: string
-  users: number[] | null
+  users?: number[] | null
 }
 
 const StoreForm = () => {
@@ -26,6 +26,8 @@ const StoreForm = () => {
     ['queryUsers', { searchPattern, currentPage: 1, limit: DEFAULT_LIMIT_RECORDS }],
     queryUsers,
   )
+
+  const mutation = useMutation(createStore)
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
@@ -45,15 +47,12 @@ const StoreForm = () => {
 
   const onSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
+    mutation.mutate(storeInput)
     console.log('submitted')
   }
 
-  const onCancel = () => {
-    console.log('canceled')
-  }
-
   return (
-    <form className="w-2/5 mt-20" onSubmit={onSubmit}>
+    <form className="w-2/5 pb-8 mt-20" onSubmit={onSubmit}>
       <TextInput
         name="domain_name"
         label="Domain name"
@@ -92,13 +91,11 @@ const StoreForm = () => {
         onInputChange={onSelectInputChange}
       />
       <div className="flex justify-center w-full mt-8">
-        <Button
-          type="button"
-          label="Cancel"
-          customStyle="bg-red-600 rounded-full text-white px-8 hover:bg-red-400 mr-3"
-          onClick={onCancel}
+        <SubmitButton
+          type="submit"
+          customStyle="w-full rounded-lg bg-blue-600 hover:bg-blue-500 text-white py-3"
+          label="Create"
         />
-        <SubmitButton type="submit" label="Create" />
       </div>
     </form>
   )

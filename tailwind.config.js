@@ -11,6 +11,9 @@ module.exports = {
         '250px': '250px',
         '300px': '300px',
       },
+      borderWidth: {
+        3: '3px',
+      },
       keyframes: {
         slideIn: {
           '0%': {

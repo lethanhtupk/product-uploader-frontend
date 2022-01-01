@@ -1,5 +1,5 @@
 import { atom, selector } from 'recoil'
-import { getMeAsync } from '~/schema/mutations/getMe'
+import { getMeAsync } from '~/schema/queries/getMe'
 import { getAccessToken, getRefreshToken, IMe, setMe } from '~/utils/authUtils'
 
 interface IToken {

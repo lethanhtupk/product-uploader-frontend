@@ -27,7 +27,7 @@ const renderHeadings = (headings: { label: string; key: string }[]) => {
 const DataTable = ({ headings, rows, total, limit, currentPage, totalPage, setLimit, setCurrentPage }: Props) => {
   return (
     <>
-      <table className="mb-10 filter drop-shadow-lg">
+      <table className="mx-2 mb-10 filter drop-shadow-lg">
         <thead>{renderHeadings(headings)}</thead>
         <tbody>
           {rows.map((row, index) => (
