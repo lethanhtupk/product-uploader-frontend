@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
+import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import SubmitButton from '~/components/elements/buttons/SubmitButton'
@@ -19,6 +20,7 @@ interface ITokens {
 
 const LoginForm = () => {
   const history = useHistory()
+  const { t } = useTranslation()
   const [userInput, setUserInput] = useState<IUserInput>()
   const [formErrors, setFormErrors] = useState<FormErrors>({})
   const setToken = useSetRecoilState(tokenState)
@@ -59,12 +61,12 @@ const LoginForm = () => {
 
   return (
     <div className="w-1/2 max-w-xl center-content-in-screen">
-      <h1 className="font-black text-center text-black mb-14">Sign in to your account</h1>
+      <h1 className="font-black text-center text-black mb-14">{t('Sign in to your account')}</h1>
       <form className="flex flex-col p-8 bg-white rounded-lg" onSubmit={onSubmit}>
         <TextInput
           name="username"
-          label="Username"
-          placeholder="Username"
+          label={t('Username')}
+          placeholder={t('Username')}
           errors={formErrors}
           isRequired={true}
           onChange={onChangeInput}
@@ -75,17 +77,17 @@ const LoginForm = () => {
           {/* TODO: implements remember me feature later */}
           <CheckboxInput
             name="remember_me"
-            label="Remember me"
+            label={t('Remember me')}
             onClick={() => {
               console.log('clicked')
             }}
           />
           <a href="#" className="font-medium">
-            Forget your password?
+            {t('Forget your password?')}
           </a>
         </div>
         <SubmitButton
-          label="Sign in"
+          label={t('Sign in')}
           customStyle="rounded-lg bg-blue-600 hover:bg-blue-400 text-white py-3 mt-10 flex flex-row items-center justify-center"
           isLoading={mutation.isLoading}
         />
