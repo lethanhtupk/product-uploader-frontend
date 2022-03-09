@@ -1,6 +1,6 @@
 import React from 'react'
 import StoreCreate from '~/components/screens/StoreCreate'
-import withAuthorization from '~/hocs/withAuthorization'
+import requireAuthorization from '~/hocs/requireAuthorization'
 import { isAdmin } from '~/utils/authUtils'
 
 const StoreCreatePage = ({ title }: { title: string }) => {
@@ -16,4 +16,4 @@ const StoreCreatePage = ({ title }: { title: string }) => {
   )
 }
 
-export default withAuthorization(isAdmin)(StoreCreatePage)
+export default requireAuthorization(isAdmin)(StoreCreatePage)

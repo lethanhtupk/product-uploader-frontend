@@ -1,5 +1,6 @@
 import React from 'react'
 import LoginForm from '~/components/widgets/LoginForm'
+import requireLogout from '~/hocs/requireLogout'
 
 const LoginPage = ({ title }: { title: string }) => {
   return (
@@ -14,4 +15,4 @@ const LoginPage = ({ title }: { title: string }) => {
   )
 }
 
-export default LoginPage
+export default requireLogout(LoginPage)
