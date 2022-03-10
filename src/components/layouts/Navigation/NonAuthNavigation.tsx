@@ -14,8 +14,8 @@ const NonAuthNavigation = () => {
 
   return (
     <div className="items-center px-4 non-auth-navigation">
-      <button className="non-auth-navigation-item">{t('Register')}</button>
-      <button className="non-auth-navigation-item" onClick={onLogin}>
+      <button className="h-full non-auth-navigation-item">{t('Register')}</button>
+      <button className="h-full non-auth-navigation-item" onClick={onLogin}>
         {t('Login')}
       </button>
       <LanguageSelector />
