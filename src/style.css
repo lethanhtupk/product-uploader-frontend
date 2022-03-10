@@ -19,7 +19,7 @@
     @apply fixed flex flex-row justify-end w-full h-16 bg-gray-800;
   }
   .non-auth-navigation-item {
-    @apply font-medium text-white uppercase w-28 hover:bg-gray-700;
+    @apply px-3 font-medium text-white uppercase hover:bg-gray-700;
   }
   .btn {
     @apply px-4 py-2 rounded-lg;

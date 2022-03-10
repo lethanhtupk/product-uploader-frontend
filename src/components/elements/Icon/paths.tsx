@@ -58,6 +58,10 @@ export const paths: IPath = {
     type: 'stroke',
     path: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />,
   },
+  chevronDown: {
+    type: 'stroke',
+    path: <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />,
+  },
   home: {
     type: 'stroke',
     path: (
@@ -185,5 +189,9 @@ export const paths: IPath = {
   back: {
     type: 'stroke',
     path: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />,
+  },
+  check: {
+    type: 'stroke',
+    path: <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />,
   },
 }

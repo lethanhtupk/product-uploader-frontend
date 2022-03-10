@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
+import LanguageSelector from '~/components/elements/LanguageSelector'
 import { NAVIGATION_PATHS } from '~/utils/routes'
 
 const NonAuthNavigation = () => {
@@ -12,11 +13,12 @@ const NonAuthNavigation = () => {
   }
 
   return (
-    <div className="non-auth-navigation">
+    <div className="items-center px-4 non-auth-navigation">
       <button className="non-auth-navigation-item">{t('Register')}</button>
       <button className="non-auth-navigation-item" onClick={onLogin}>
         {t('Login')}
       </button>
+      <LanguageSelector />
     </div>
   )
 }
