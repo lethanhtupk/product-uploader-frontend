@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import { NAVIGATION_PATHS } from '~/utils/routes'
 
@@ -13,6 +14,7 @@ const NotFound = ({
   message: string
   positionStyle?: string
 }) => {
+  const { t } = useTranslation('common')
   const history = useHistory()
   const onGoHome = () => {
     history.push(NAVIGATION_PATHS.HOME)
@@ -26,13 +28,13 @@ const NotFound = ({
       </div>
       <div className="pl-6 leading-8">
         <p className="text-5xl font-bold">{title}</p>
-        <p className="text-gray-500">{message}</p>
+        <p className="text-gray-500">{t(message)}</p>
         <div className="mt-10">
           <button type="button" className="text-white bg-blue-600 btn hover:bg-blue-400" onClick={onGoHome}>
-            Go back home
+            {t('Go back home')}
           </button>
           <button type="button" className="ml-2 text-blue-800 bg-blue-200 btn hover:bg-blue-400 hover:text-white">
-            Contact support
+            {t('Contact support')}
           </button>
         </div>
       </div>

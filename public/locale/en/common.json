@@ -7,5 +7,20 @@
   "Sign in": "Sign in",
   "Remember me": "Remember me",
   "Sign in to your account": "Sign in to your account",
-  "This field is required": "This field is required"
+  "This field is required": "This field is required",
+  "Home": "Home",
+  "Templates": "Templates",
+  "All templates": "All templates",
+  "New template": "New template",
+  "Stores": "Stores",
+  "All stores": "All stores",
+  "New store": "New store",
+  "Users": "Users",
+  "All user": "All users",
+  "New user": "New user",
+  "Logout": "Logout",
+  "Go back home": "Go back home",
+  "Contact support": "Contact support",
+  "Access is not granted.": "Access is not granted.",
+  "Please check the URL in the address bar and try again.": "Please check the URL in the address bar and try again."
 }

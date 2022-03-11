@@ -8,16 +8,16 @@ import { NAVIGATION_PATHS } from '~/utils/routes'
 const navigationItems = [
   {
     key: 'home',
-    label: 'home',
+    label: 'Home',
     path: NAVIGATION_PATHS.HOME,
   },
   {
     key: 'templates',
-    label: 'template',
+    label: 'Templates',
     children: [
       {
         key: 'all_template',
-        label: 'All template',
+        label: 'All templates',
         path: NAVIGATION_PATHS.TEMPLATES,
       },
       {
@@ -29,11 +29,11 @@ const navigationItems = [
   },
   {
     key: 'stores',
-    label: 'store',
+    label: 'Stores',
     children: [
       {
         key: 'all_store',
-        label: 'All store',
+        label: 'All stores',
         path: NAVIGATION_PATHS.STORES,
       },
       {
@@ -45,11 +45,11 @@ const navigationItems = [
   },
   {
     key: 'users',
-    label: 'users',
+    label: 'Users',
     children: [
       {
         key: 'all_user',
-        label: 'All user',
+        label: 'All users',
         path: NAVIGATION_PATHS.USERS,
       },
       {
@@ -61,7 +61,7 @@ const navigationItems = [
   },
   {
     key: 'logout',
-    label: 'logout',
+    label: 'Logout',
   },
 ]
 
@@ -86,7 +86,7 @@ const SidebarNavigation = () => {
   const me = useRecoilValue(getCurrentUser)
 
   return (
-    <div className="fixed top-0 left-0 flex flex-col h-screen text-gray-200 bg-gray-800 min-w-250px">
+    <div className="fixed top-0 left-0 flex flex-col h-screen text-gray-200 bg-gray-800 min-w-300px">
       <div className="pt-10 pb-8 overflow-y-auto">
         {navigationItems.map((item) => (
           <NavigationItem key={item.key} item={item} activeTab={activeTab} setActiveTab={setActiveTab} />

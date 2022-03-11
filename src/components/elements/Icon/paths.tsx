@@ -73,7 +73,7 @@ export const paths: IPath = {
       />
     ),
   },
-  template: {
+  templates: {
     type: 'stroke',
     path: (
       <path
@@ -95,7 +95,7 @@ export const paths: IPath = {
       />
     ),
   },
-  store: {
+  stores: {
     type: 'stroke',
     path: (
       <path

@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import Icon from '~/components/elements/Icon'
@@ -21,6 +22,7 @@ interface Props {
 }
 
 const NavigationItem = ({ item, activeTab, setActiveTab }: Props) => {
+  const { t } = useTranslation('common')
   const history = useHistory()
   const [isShowChildren, setIsShowChildren] = useState(false)
   const subNavigationRef = useRef(null)
@@ -36,7 +38,7 @@ const NavigationItem = ({ item, activeTab, setActiveTab }: Props) => {
     if (item.children) {
       setIsShowChildren(!isShowChildren)
     }
-    if (item.label === 'logout') {
+    if (item.key === 'logout') {
       setToken(() => {
         return { accessToken: null, refreshToken: null }
       })
@@ -55,8 +57,8 @@ const NavigationItem = ({ item, activeTab, setActiveTab }: Props) => {
         }`}
         onClick={() => onSelectTab(item)}
       >
-        <Icon name={item.label} style="w-6 h-6" />
-        <p className="ml-4 capitalize">{item.label}</p>
+        <Icon name={item.key} style="w-6 h-6" />
+        <p className="ml-4 capitalize">{t(item.label)}</p>
         {item.children && (
           <Icon
             name="chevronRight"
@@ -76,7 +78,7 @@ const NavigationItem = ({ item, activeTab, setActiveTab }: Props) => {
               }`}
               onClick={() => onSelectTab(child)}
             >
-              {child.label}
+              {t(child.label)}
             </div>
           ))}
         </div>
