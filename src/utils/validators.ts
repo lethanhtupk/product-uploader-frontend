@@ -2,7 +2,7 @@ import React from 'react'
 import i18next from '~/i18n'
 import { FormErrors } from '~/utils/errorUtils'
 
-export const REQUIRED_FIELD_MESSAGE = 'This field is required.'
+export const REQUIRED_FIELD_MESSAGE = 'This field is required'
 
 export const requiredValue = (value: string): string => {
   if (!value || value === '') {

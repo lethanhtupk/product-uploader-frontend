@@ -11,7 +11,7 @@ interface Props {
 }
 
 const PasswordInput = ({ errors, onChange, onBlur }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
   const [showPassword, setShowPassword] = useState<boolean>(false)
 
   const onToggleShowPassword = () => {

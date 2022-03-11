@@ -20,7 +20,7 @@ interface ITokens {
 
 const LoginForm = () => {
   const history = useHistory()
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
   const [userInput, setUserInput] = useState<IUserInput>()
   const [formErrors, setFormErrors] = useState<FormErrors>({})
   const setToken = useSetRecoilState(tokenState)

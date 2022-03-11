@@ -6,7 +6,7 @@ import { NAVIGATION_PATHS } from '~/utils/routes'
 
 const NonAuthNavigation = () => {
   const history = useHistory()
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
 
   const onLogin = () => {
     history.push(NAVIGATION_PATHS.LOGIN)

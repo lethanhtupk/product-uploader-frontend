@@ -1,35 +1,18 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
+import commonTranslateEN from '../public/locale/en/common.json'
+import commonTranslateVN from '../public/locale/vn/common.json'
+
 // the translations
 // (tip move them in a JSON file and import them,
 // or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
 const resources = {
   en: {
-    translation: {
-      Username: 'Username',
-      Password: 'Password',
-      Register: 'Register',
-      Login: 'Login',
-      'Forget your password?': 'Forget your password?',
-      'Sign in': 'Sign in',
-      'Remember me': 'Remember me',
-      'Sign in to your account': 'Sign in to your account',
-      'This field is required.': 'This field is required.',
-    },
+    common: commonTranslateEN,
   },
   vn: {
-    translation: {
-      Username: 'Tên tài khoản',
-      Password: 'Mật khẩu',
-      Register: 'Đăng ký',
-      Login: 'Đăng nhập',
-      'Forget your password?': 'Quên mật khẩu?',
-      'Sign in': 'Đăng nhập',
-      'Remember me': 'Nhớ tài khoản',
-      'Sign in to your account': 'Đăng nhập ngay!',
-      'This field is required.': 'Trường này là bắt buộc.',
-    },
+    common: commonTranslateVN,
   },
 }
 

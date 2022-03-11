@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18next from '~/i18n'
 import Icon from '../Icon'
@@ -17,7 +17,7 @@ const LANGUAGE_OPTIONS = [
 ]
 
 const LanguageSelector = () => {
-  const { i18n } = useTranslation()
+  const { i18n } = useTranslation('common')
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [langCode, setLangCode] = useState<string>('vn')
 
@@ -31,8 +31,8 @@ const LanguageSelector = () => {
   }
 
   const onChangeLanguage = (langCode: string) => {
-    i18next.changeLanguage(langCode)
     setLangCode(langCode)
+    i18next.changeLanguage(langCode)
     setIsOpen(false)
   }
   return (
