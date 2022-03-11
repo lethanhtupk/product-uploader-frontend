@@ -50,7 +50,7 @@ const LanguageSelector = () => {
         <Icon name="chevronDown" style="w-4 h-4" />
       </div>
       {isOpen && (
-        <div className="absolute bg-white -bottom-[4.2rem] right-2 w-[150px] flex flex-col">
+        <div className="absolute bg-white bottom-0 translate-y-[105%] right-1 w-[150px] flex flex-col">
           {LANGUAGE_OPTIONS.map((option) => (
             <div
               key={option.value}
