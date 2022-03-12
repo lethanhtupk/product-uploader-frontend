@@ -1,54 +1,57 @@
 import React from 'react'
-import Cell from '~/components/Cell'
-import DataTablePagination from '../DataTablePagination'
-import { ICell } from '~/utils/dataTableUtils'
+import { useTable } from 'react-table'
+
+interface IColumn {
+  Header: string
+  accessor: string
+}
 
 interface Props {
-  headings: { label: string; key: string }[]
-  rows: ICell[][]
-  total: number
-  limit: number
-  currentPage: number
-  totalPage: number
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>
-  setLimit: React.Dispatch<React.SetStateAction<number>>
+  columns: IColumn[]
+  data: Record<string, unknown>[]
 }
 
-const renderHeadings = (headings: { label: string; key: string }[]) => {
-  return (
-    <tr className="text-left">
-      {headings.map((heading) => (
-        <Cell key={heading.key} isHeading={true} value={heading.label} />
-      ))}
-    </tr>
-  )
-}
+const DataTable = ({ columns, data }: Props) => {
+  const tableInstance = useTable({ columns, data })
 
-const DataTable = ({ headings, rows, total, limit, currentPage, totalPage, setLimit, setCurrentPage }: Props) => {
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance
+
   return (
-    <>
-      <table className="mx-2 mb-10 filter drop-shadow-lg">
-        <thead>{renderHeadings(headings)}</thead>
-        <tbody>
-          {rows.map((row, index) => (
-            <tr key={index} className="text-left bg-white">
-              {row.map((cell, index) => (
-                <Cell key={index} value={cell} isHeading={false} />
-              ))}
-            </tr>
+    <div {...getTableProps()} className="w-4/5 mt-32 ml-14">
+      {headerGroups.map((headerGroup, index) => (
+        <div key={index} {...headerGroup.getHeaderGroupProps()} className="flex flex-row justify-evenly py-3">
+          {headerGroup.headers.map((column, index) => (
+            <div
+              key={index}
+              {...column.getHeaderProps()}
+              className="uppercase text-left w-full px-2 font-medium text-sm"
+            >
+              {column.render('Header')}
+            </div>
           ))}
-        </tbody>
-      </table>
-      <DataTablePagination
-        count={rows.length}
-        total={total}
-        limit={limit}
-        currentPage={currentPage}
-        totalPage={totalPage}
-        setLimit={setLimit}
-        setCurrentPage={setCurrentPage}
-      />
-    </>
+        </div>
+      ))}
+      <div {...getTableBodyProps()}>
+        {rows.map((row, index) => {
+          prepareRow(row)
+          return (
+            <div
+              key={index}
+              {...row.getRowProps()}
+              className="bg-white justify-evenly flex flex-row min-h-[75px] items-center mb-1"
+            >
+              {row.cells.map((cell, index) => {
+                return (
+                  <div key={index} {...cell.getCellProps()} className="w-full text-left px-2">
+                    {cell.render('Cell')}
+                  </div>
+                )
+              })}
+            </div>
+          )
+        })}
+      </div>
+    </div>
   )
 }
 

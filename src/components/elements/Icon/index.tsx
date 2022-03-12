@@ -8,7 +8,8 @@ interface Props {
 }
 
 const Icon = ({ name, viewBox = '0 0 24 24', style }: Props) => {
-  const svgStyle = paths[name].type === 'stroke' ? { stroke: 'currentColor', fill: 'none' } : { fill: 'currentColor' }
+  const svgStyle =
+    paths[name].type === 'stroke' ? { stroke: 'currentColor', fill: 'none', strokeWidth: 2 } : { fill: 'currentColor' }
 
   return (
     <div className={style}>
