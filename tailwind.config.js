@@ -11,6 +11,10 @@ module.exports = {
         '250px': '250px',
         '300px': '300px',
       },
+      minHeight: {
+        '4/5': '80%',
+        '600px': '600px',
+      },
       borderWidth: {
         3: '3px',
       },

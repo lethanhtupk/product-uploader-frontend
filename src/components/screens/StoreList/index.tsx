@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { useQuery } from 'react-query'
 import LoadingIndicator from '~/components/elements/LoadingIndicator'
+import DataTable from '~/components/widgets/DataTable'
 import { queryStores } from '~/schema/queries/stores'
 import { ResponseError } from '~/utils/errorUtils'
 
@@ -13,14 +14,46 @@ const StoreList = () => {
     queryStores,
   )
 
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Domain name',
+        accessor: 'domain_name', // accessor is the "key" in the data
+      },
+      {
+        Header: 'Consumer key',
+        accessor: 'consumer_key',
+      },
+      {
+        Header: 'Secret key',
+        accessor: 'secret_key',
+      },
+      {
+        Header: 'WP username',
+        accessor: 'wp_username',
+      },
+      {
+        Header: 'WP password',
+        accessor: 'wp_password',
+      },
+      {
+        Header: 'Users',
+        accessor: 'users',
+      },
+      {
+        Header: '',
+        accessor: 'actions',
+      },
+    ],
+    [],
+  )
+
   return (
     <>
       {isLoading ? (
         <LoadingIndicator positionStyle="center-content" />
       ) : isSuccess ? (
-        <div className="mt-20 overflow-x-auto">
-          <div className="px-4"></div>
-        </div>
+        <DataTable columns={columns} data={[]} isLoading={isLoading} />
       ) : (
         <p>{(error as ResponseError).errors.detail}</p>
       )}

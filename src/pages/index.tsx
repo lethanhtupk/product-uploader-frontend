@@ -83,7 +83,7 @@ const RootPage = ({ title }: { title: string }) => {
       </header>
       <Notification />
       <div className="main-content">
-        <DataTable columns={columns} data={data} />
+        <DataTable columns={columns} data={data} isLoading={false} />
       </div>
     </>
   )
