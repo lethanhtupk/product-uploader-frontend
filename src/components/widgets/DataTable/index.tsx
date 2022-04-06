@@ -19,15 +19,15 @@ const DataTable = ({ columns, data, isLoading }: Props) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance
 
   return (
-    <div {...getTableProps()} className="w-4/5 mt-32 ml-14 bg-white">
+    <div {...getTableProps()} className="mt-32 bg-white">
       {headerGroups.map((headerGroup, index) => (
         <div
           key={index}
           {...headerGroup.getHeaderGroupProps()}
-          className="flex flex-row justify-evenly py-3 border-b border-gray-200"
+          className="flex flex-row py-3 border-b border-gray-200 justify-evenly"
         >
           {headerGroup.headers.map((column, index) => (
-            <div key={index} {...column.getHeaderProps()} className="text-center w-full text-sm text-gray-600">
+            <div key={index} {...column.getHeaderProps()} className="w-full text-sm text-center text-gray-600">
               {column.render('Header')}
             </div>
           ))}
@@ -35,7 +35,7 @@ const DataTable = ({ columns, data, isLoading }: Props) => {
       ))}
       <div {...getTableBodyProps()} className="bg-white min-h-600px">
         {isLoading ? (
-          <div className="flex flex-row h-full justify-center items-center">
+          <div className="flex flex-row items-center justify-center h-full">
             <LoadingIndicator positionStyle="relative mt-10" options={{ width: '40', height: '40' }} />
           </div>
         ) : (

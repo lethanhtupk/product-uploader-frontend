@@ -11,25 +11,27 @@ import '~/style.css'
 const App = () => {
   const queryClient = new QueryClient()
   return (
-    <RecoilRoot>
-      <React.Suspense fallback={<LoadingIndicator />}>
-        <QueryClientProvider client={queryClient}>
-          <Router>
-            <Switch>
-              {routes.map((route) => (
-                <Route key={route.path} path={route.path} exact>
-                  {route.component}
+    <div className="flex flex-row">
+      <RecoilRoot>
+        <React.Suspense fallback={<LoadingIndicator />}>
+          <QueryClientProvider client={queryClient}>
+            <Router>
+              <Navigation />
+              <Switch>
+                {routes.map((route) => (
+                  <Route key={route.path} path={route.path} exact>
+                    {route.component}
+                  </Route>
+                ))}
+                <Route path="*">
+                  <NotFound404Page />
                 </Route>
-              ))}
-              <Route path="*">
-                <NotFound404Page />
-              </Route>
-            </Switch>
-            <Navigation />
-          </Router>
-        </QueryClientProvider>
-      </React.Suspense>
-    </RecoilRoot>
+              </Switch>
+            </Router>
+          </QueryClientProvider>
+        </React.Suspense>
+      </RecoilRoot>
+    </div>
   )
 }
 

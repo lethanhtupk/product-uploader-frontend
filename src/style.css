@@ -50,7 +50,7 @@ body {
     @apply text-yellow-600;
   }
   .main-content {
-    @apply absolute top-0 left-[300px] flex w-full;
+    @apply w-full px-3;
   }
   .active-navigation-tab {
     @apply text-yellow-400 bg-gray-900;

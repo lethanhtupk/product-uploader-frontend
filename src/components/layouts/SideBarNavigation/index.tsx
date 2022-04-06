@@ -67,32 +67,19 @@ const navigationItems = [
 
 const INITIAL_TAB = 'home'
 
-// const flattenNavigationItems = (navigationItems: NavigationItem[]): string[] => {
-//   const tabs: string[] = []
-//   navigationItems.map((item) => {
-//     tabs.push(item.key)
-//     if (item.children) {
-//       item.children.forEach((childItem) => {
-//         tabs.push(childItem.key)
-//       })
-//     }
-//   })
-//   return tabs
-// }
-
 const SidebarNavigation = () => {
   const { tab }: Record<string, unknown> = useParams()
   const [activeTab, setActiveTab] = useState<string>((tab || INITIAL_TAB) as string)
   const me = useRecoilValue(getCurrentUser)
 
   return (
-    <div className="fixed top-0 left-0 flex flex-col h-screen text-gray-200 bg-gray-800 min-w-300px">
+    <div className="top-0 left-0 flex flex-col justify-between h-screen text-gray-200 bg-gray-800 min-w-300px w-fit">
       <div className="pt-10 pb-8 overflow-y-auto">
         {navigationItems.map((item) => (
           <NavigationItem key={item.key} item={item} activeTab={activeTab} setActiveTab={setActiveTab} />
         ))}
       </div>
-      <div className="absolute bottom-0 flex flex-row w-full py-4 pl-4 text-white bg-gray-700">
+      <div className="bottom-0 flex flex-row py-4 pl-4 text-white bg-gray-700">
         <img
           src="https://giaithuongtinhnguyen.vn/dien-vien-fukuda/imager_7350.jpg"
           alt="avatar"
